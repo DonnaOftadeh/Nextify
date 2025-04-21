@@ -1,0 +1,16 @@
+streamlit
+pandas
+plotly
+seaborn
+matplotlib
+IPython
+bs4
+google
+google-generativeai
+importlib
+ipython
+kaggle_secrets
+numpy
+seaborn
+shutil
+vertexai
