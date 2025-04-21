@@ -90,7 +90,8 @@ Each strategy logs:
 pip install -r requirements.txt
 streamlit run app/app.py
 ```
-
+Here you can find the dashboard link to streamlit dashboard:
+https://nextify-dashboard-100.streamlit.app/
 ---
 
 ## 📚 License
