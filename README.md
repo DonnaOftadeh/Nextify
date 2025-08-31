@@ -1,8 +1,8 @@
 # 🧠 Nextify — Modular, Multi-Agent Product Strategy Assistant
 
 **Nextify** is a lightweight demo showing how AI agents can guide product ideation.
-The repo now includes a simple landing page, a chat-style agent walkthrough, and a
-read-only developer dashboard.
+The repo now includes a simple landing page, a chat-style agent walkthrough that
+fires all bundled agents in parallel, and a read-only developer dashboard.
 
 ---
 
@@ -15,9 +15,9 @@ streamlit run app/app.py
 
 On launch you'll see the landing page:
 1. Choose a path (idea, industry, explore, improve).
-2. Describe your context and run the agents.
-3. Watch placeholder steps stream in and download a PDF summary.
-4. Visit the *Developer Dashboard* page for raw evaluation data (demo only).
+2. Enter a company and product idea, then run the agents.
+3. Watch each agent's output stream in and download a PDF summary.
+4. Use the *Developer Dashboard* button to inspect evaluation data (demo only).
 
 ---
 
@@ -26,6 +26,7 @@ On launch you'll see the landing page:
 Nextify/
 ├── app/
 │   ├── app.py                  # Landing + agent walkthrough
+│   ├── agent_runner.py         # Loads prompts and runs agents in parallel
 │   └── pages/
 │       └── Developer_Dashboard.py  # Simple, view-only dashboard
 ├── data/

@@ -1,6 +1,7 @@
+import asyncio
 import streamlit as st
 from fpdf import FPDF
-import io
+from agent_runner import run_parallel_agents
 
 st.set_page_config(
     page_title="Nextify",
@@ -40,32 +41,30 @@ def show_landing():
         st.session_state.user_mode = "Improve";
         st.session_state.stage = "chat"
     st.sidebar.page_link("pages/Developer_Dashboard.py", label="Developer Dashboard")
+    st.page_link("pages/Developer_Dashboard.py", label="👩‍💻 Developer Dashboard")
 
 
 def show_chat():
     st.title("Nextify Agent Lab")
     st.write(f"Mode: **{st.session_state.get('user_mode','')}**")
-    user_text = st.text_area("Describe your idea or industry", height=150)
+    company = st.text_input("Company name")
+    product = st.text_area("Product idea or industry", height=150)
     run = st.button("Run Agents")
-    if run and user_text:
-        steps = [
-            ("Understanding context", "Reading your input"),
-            ("Researching market", "Scanning trends and competitors"),
-            ("Generating features", "Drafting potential solutions"),
-            ("Building roadmap", "Outlining next steps")
-        ]
-        report = [f"Mode: {st.session_state['user_mode']}", f"Input: {user_text}", ""]
-        for title, desc in steps:
+    if run and company and product:
+        with st.spinner("Running parallel agents..."):
+            results = asyncio.run(run_parallel_agents(company, product))
+        report = [f"Company: {company}", f"Product: {product}", ""]
+        for name, output in results.items():
             with st.chat_message("assistant"):
-                st.write(f"**{title}** — {desc}")
-            report.append(f"{title}: {desc}")
+                st.markdown(f"### {name.capitalize()}\n{output}")
+            report.append(f"{name}: {output}")
         pdf_bytes = create_pdf("\n".join(report))
         st.success("Analysis complete.")
         st.download_button("Download PDF", data=pdf_bytes, file_name="nextify_report.pdf", mime="application/pdf")
         if st.button("Start over"):
             st.session_state.stage = "landing"
     else:
-        st.info("Enter details and click **Run Agents** to begin.")
+        st.info("Enter company and product, then click **Run Agents**.")
         st.sidebar.page_link("pages/Developer_Dashboard.py", label="Developer Dashboard")
 
 
