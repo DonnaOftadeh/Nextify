@@ -1,99 +1,50 @@
 # 🧠 Nextify — Modular, Multi-Agent Product Strategy Assistant
 
-**Nextify** is your product management brain — upgraded. It’s a modular, multi-agent system built to assist (and often outperform) traditional PM workflows. Designed during the Google GenAI Capstone, Nextify started with prompt evaluation but now powers a full AI-driven feature and roadmap engine.
-
-It intelligently generates product features, ICE scores, OKRs, strategic roadmaps, competitive insights, and even multi-format storytelling — while grounding recommendations in prompts, agents, and (soon) embeddings.
-
----
-
-## 🔍 What Does It Do?
-
-- ✅ Evaluate prompt strategies across LLM runs and human feedback
-- 🔁 Compare Zero-Shot, Few-Shot, Chain-of-Thought, ReAct, and more
-- 🧠 Generate structured product strategy outputs:
-  - Mission & Vision
-  - Feature Prioritization (ICE)
-  - Strategic Roadmaps (short/mid/long-term)
-  - SMART OKRs
-  - Next-level innovation
-- 🧩 Modular agent design — agents for feature ideation, roadmap planning, OKR writing, feedback parsing, and competitive analysis
-- 📦 Multi-format output generation (JSON, text, blog post, video outline)
+**Nextify** is a lightweight demo showing how AI agents can guide product ideation.
+The repo now includes a simple landing page, a chat-style agent walkthrough that
+fires all bundled agents in parallel, and a read-only developer dashboard.
 
 ---
 
-## 📊 Live Interactive Dashboard
-
-Deployed on [Render.com](https://render.com), the dashboard lets you:
-
-- Filter by `Company`, `Strategy`, `Prompt Tag`, or `Run`
-- View evaluation tables with LLM & Human scores
-- See full LLM outputs (in Markdown or JSON mode)
-- Track score trends across runs
-- Expand feedback and lessons per prompt
-- Explore placeholder tabs for:
-  - 🧬 Embedding-based similarity (coming)
-  - 🤖 Agent evaluations (multi-agent chain visibility)
-
-### ➡️ [View the Live Dashboard](https://nextify-dashboard.onrender.com)
-
----
-
-## 📁 Project Structure
-
-```
-productify-next/
-├── app/
-│   └── app.py                  # Streamlit dashboard logic
-├── data/
-│   └── all_experiment_view.csv  # Evaluation data across runs
-├── prompts/
-│   └── prompt_outputs.json     # Raw prompt + response archives
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 🧪 Prompting Framework
-
-Supports side-by-side comparison of:
-- Zero-shot
-- Few-shot
-- Chain-of-Thought (CoT)
-- Tree-of-Thought
-- ReAct
-- Combined approaches
-
-Each strategy logs:
-- Prompt content
-- LLM-generated output
-- Self-evaluation (LLM score)
-- Human evaluation
-- Feedback + lessons
-
----
-
-## 🧠 Future Modules
-
-| Component           | Status     | Description |
-|---------------------|------------|-------------|
-| Embedding Explorer  | 🛠️ in progress | Document-level product understanding |
-| Multi-Agent Orchestration | 🛠️ prototyping | Role-based agent chains for PM tasks |
-| Fine-tuning Stub    | ✅ planned  | Dataset formatter for continued LLM training |
-| Real-Time Interface | 🧪 demo     | Goal: Reactive prompt + feedback loop |
-
----
-
-## 🛠️ Local Run
+## 🚀 Quick Start
 
 ```bash
 pip install -r requirements.txt
 streamlit run app/app.py
 ```
-Here you can find the dashboard link to streamlit dashboard:
-https://nextify-dashboard-100.streamlit.app/
+
+On launch you'll see the landing page:
+1. Choose a path (idea, industry, explore, improve).
+2. Enter a company and product idea, then run the agents.
+3. Watch each agent's output stream in and download a PDF summary.
+4. Use the *Developer Dashboard* button to inspect evaluation data (demo only).
+
+---
+
+## 📁 Project Structure
+```
+Nextify/
+├── app/
+│   ├── app.py                  # Landing + agent walkthrough
+│   ├── agent_runner.py         # Loads prompts and runs agents in parallel
+│   └── pages/
+│       └── Developer_Dashboard.py  # Simple, view-only dashboard
+├── data/
+│   └── all_experiment_view.csv  # Evaluation data
+├── notebooks/
+│   └── nextify_user_walkthrough.ipynb
+├── prompts/
+└── requirements.txt
+```
+
+---
+
+## 🛠️ Notes
+- PDF export uses `fpdf` and contains a minimal text summary.
+- The developer dashboard is an early preview and not editable.
+- Agent steps are illustrative; plug in your own logic or model calls.
+
 ---
 
 ## 📚 License
-
-MIT — feel free to fork, remix, and evolve the PM workflow of the future.
+MIT — feel free to fork and evolve.
