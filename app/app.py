@@ -52,8 +52,15 @@ def show_chat():
     run = st.button("Run Agents")
     if run and company and product:
         with st.spinner("Running parallel agents..."):
-            results = asyncio.run(run_parallel_agents(company, product))
+            results = asyncio.run(
+                run_parallel_agents(company, product, st.session_state.get("user_mode", "Idea"))
+            )
+        entry = results.pop("entry", "")
         report = [f"Company: {company}", f"Product: {product}", ""]
+        if entry:
+            with st.chat_message("assistant"):
+                st.markdown(entry)
+            report.append(f"entry: {entry}")
         for name, output in results.items():
             with st.chat_message("assistant"):
                 st.markdown(f"### {name.capitalize()}\n{output}")
