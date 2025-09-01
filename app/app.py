@@ -24,6 +24,7 @@ def create_pdf(text: str) -> bytes:
 
 
 def show_landing():
+    st.warning("Trial version – outputs are placeholders and for demo only.")
     st.title("Nextify")
     st.write("AI-powered innovation lab. Choose your path to begin.")
     col1, col2 = st.columns(2)
@@ -45,6 +46,7 @@ def show_landing():
 
 
 def show_chat():
+    st.warning("Trial version – agent responses are illustrative.")
     st.title("Nextify Agent Lab")
     st.write(f"Mode: **{st.session_state.get('user_mode','')}**")
     company = st.text_input("Company name")
